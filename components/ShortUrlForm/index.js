@@ -1,3 +1,4 @@
+import React from 'react';
 import { useMachine } from 'react-robot';
 import machine from './machine';
 import ErrorMessage from './Error';
@@ -15,7 +16,7 @@ export default function ShortUrlForm() {
     case 'success':
       return Success(send, alias, shortId, shortUrl);
     case 'saving':
-      return null; // better show nothing as the saving time is too fast anyway.
+      return <p>saving</p>;
     case 'error':
       return ErrorMessage(send, error);
     default:

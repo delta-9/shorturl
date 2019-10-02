@@ -48,6 +48,4 @@ function saveShortUrl(data) {
   });
 }
 
-const delay = time => new Promise(resolve => setTimeout(resolve, time));
-
 export default machine;
