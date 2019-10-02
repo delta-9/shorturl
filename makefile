@@ -5,7 +5,7 @@ list:
 
 start:
 	docker-compose -f docker-compose.test.yml up --build -d; \
-	sleep 3; \
+	sleep 15; \
 	open http://localhost:9556; \
 	docker-compose -f docker-compose.test.yml logs -f --tail=1000
 
