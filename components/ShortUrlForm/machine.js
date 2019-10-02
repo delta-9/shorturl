@@ -4,6 +4,11 @@ import { isURLValid, isAliasValid } from '../../utils/validation';
 
 const initialState = () => ({ url: '', alias: '', error: '', shortId: '', shortUrl: '', validationFailed: false });
 
+/**
+ * This is the machine states.
+ *
+ * It describe the different state of the component, and their possible transitions.
+ */
 const machine = createMachine({
   init: state(immediate('edit', reduce(() => initialState()))),
   edit: state(
@@ -12,15 +17,15 @@ const machine = createMachine({
     transition('save', 'validate')
   ),
   validate: state(
-    immediate('save', guard(formInputsAreValid)),
+    immediate('saving', guard(formInputsAreValid)),
     immediate('edit', reduce(state => ({ ...state, validationFailed: true })))
   ),
-  save: invoke(
+  saving: invoke(
     saveShortUrl,
     transition(
       'done',
       'success',
-      reduce((state, res) => ({ ...state, shortId: res.data[0].id, shortUrl: res.data[0].shortUrl }))
+      reduce((state, res) => ({ ...state, shortId: res.data.id, shortUrl: res.data.shortUrl }))
     ),
     transition('error', 'error', reduce((state, ev) => ({ ...state, error: ev.error })))
   ),
@@ -36,13 +41,11 @@ function saveShortUrl(data) {
   const headers = new Headers();
   headers.append('Content-Type', 'application/json');
   headers.append('Accept', 'application/json');
-  const req = request('/api/short', {
+  return request('/api/short', {
     method: 'POST',
     headers,
     body: JSON.stringify(data)
   });
-  // We ensure it takes at least 2 second to execute so the loading screen doesn't look flickered.
-  return Promise.all([req, delay(2000)]);
 }
 
 const delay = time => new Promise(resolve => setTimeout(resolve, time));

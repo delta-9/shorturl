@@ -19,19 +19,21 @@ async function endpoint({ body: { url = '', alias = null } }, res) {
 
   // Attempt to save the short url with an unique ID.
   let id = alias && alias.length ? alias : generate(nolookalikes, 7);
+
+  // We have to implement this lookup, but in theory it should very rarely happen.
   let success = false;
-  const maxLookup = 10;
+  const maxLookup = 10; // Limit the number of lookup
   for (let i = 0; i < maxLookup; i += 1) {
     try {
-      await knex
-        .insert({
-          id,
-          created: timestamp(),
-          url
-        })
-        .into('short_url');
+      const exists = await knex
+        .select('id')
+        .from('short_url')
+        .where('id', id);
+      if (exists && exists[0] && exists[0].id) {
+        throw new Error('Id already exist');
+      }
     } catch (error) {
-      // id already exists, try another one.
+      // Id already exists, try another one.
       id = generate(nolookalikes, 7);
       continue;
     }
@@ -39,9 +41,24 @@ async function endpoint({ body: { url = '', alias = null } }, res) {
     break;
   }
   if (!success) {
+    console.error('Impossible to generate a non-existing ID');
     res.status(503).end();
     return;
   }
+  try {
+    await knex
+      .insert({
+        id,
+        created: timestamp(),
+        url
+      })
+      .into('short_url');
+  } catch (error) {
+    console.log(error);
+    res.status(500).end();
+    return;
+  }
+
   res.json({ id, shortUrl: `${publicBaseUrl}/${id}` });
 }
 

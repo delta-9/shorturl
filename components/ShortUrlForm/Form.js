@@ -1,108 +1,7 @@
 import React from 'react';
-import copyToClipboard from 'copy-to-clipboard';
-import { useMachine } from 'react-robot';
-import machine from './machine';
 import { isURLValid, isAliasValid } from '../../utils/validation';
 
-function Create() {
-  const [current, send] = useMachine(machine);
-  const {
-    context: { url = '', alias = '', shortId = '', shortUrl = '', error = '', validationFailed = false },
-    machine: { state }
-  } = current.service;
-
-  switch (state.name) {
-    case 'success':
-      return Success(send, alias, shortId, shortUrl);
-    case 'save':
-      return Save(send, url);
-    case 'error':
-      return ErrorMessage(send, error);
-    default:
-      return Form(send, url, alias, validationFailed);
-  }
-}
-
-function ErrorMessage(send, error) {
-  return (
-    <>
-      <p>{`An error occured, please try again later. ${error}`}</p>
-      <button className="save" type="submit" onClick={() => send({ type: 'save' })}>
-        Try again
-      </button>
-      <button className="reset" onClick={() => send('init')}>
-        Reset values
-      </button>
-      <style jsx>{`
-        .save {
-          float: right;
-          margin-top: 20px;
-          color: white;
-          font-weight: bold;
-          background-color: #4287f5;
-        }
-        .reset {
-          float: right;
-          margin-top: 20px;
-          background-color: #b6bec2;
-        }
-      `}</style>
-    </>
-  );
-}
-
-function Success(send, alias, shortId, shortUrl) {
-  return (
-    <>
-      {alias && alias.length && shortId !== alias ? (
-        <p
-        >{`Sorry the alias ${alias} was already in use, we did generate a short url for you anyway. If you wish you can try again with another alias.`}</p>
-      ) : null}
-      <p>
-        <span>Saved as </span>
-        <a href={shortUrl}>{shortUrl}</a>
-        <button type="button" className="copy" onClick={() => copyToClipboard(shortUrl)}>
-          Copy to clipboard
-        </button>
-      </p>
-      <button className="reset" onClick={() => send('init')}>
-        Short another long url
-      </button>
-      <style jsx>{`
-        .copy {
-          display: block;
-          margin: 20px 0 0;
-          color: white;
-          font-weight: bold;
-          background-color: #4287f5;
-        }
-        .reset {
-          margin-top: 10px;
-          background-color: #b6bec2;
-        }
-      `}</style>
-    </>
-  );
-}
-
-function Save(send, url) {
-  const phrases = [
-    'Creating an hyper space connection to ',
-    'Detecting an anomaly in space and time that lead to ',
-    'Crafting portal to ',
-    'Tunneling to ',
-    'Shrinking '
-  ];
-  const phrase = phrases[Math.floor(Math.random() * Math.floor(phrases.length - 1))];
-  return (
-    <p>
-      <span style={{ fontSize: 20 }}>{phrase}</span>
-      {url}
-    </p>
-  );
-}
-
-function Form(send, url, alias, validationFailed) {
+export default function Form(send, url, alias, validationFailed) {
   const sendInput = name => event => send({ event, type: 'input', name });
   return (
     <>
@@ -205,5 +104,3 @@ function Form(send, url, alias, validationFailed) {
     </>
   );
 }
-
-export default Create;

@@ -3,7 +3,7 @@ import Head from 'next/head';
 import 'sanitize.css';
 import 'sanitize.css/forms.css';
 import 'sanitize.css/typography.css';
-import Create from '../components/Create';
+import ShortUrlForm from '../components/ShortUrlForm';
 
 const Home = () => (
   <div>
@@ -17,7 +17,7 @@ const Home = () => (
       <h1 className="title">Welcome to short url 🏋️ !</h1>
       <p className="description">Makes your long url ... short</p>
       <section className="content">
-        <Create />
+        <ShortUrlForm />
       </section>
     </div>
 
