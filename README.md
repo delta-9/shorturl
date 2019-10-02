@@ -14,7 +14,7 @@ Makes long url ... short
 ## Deployment
  - use the serverless service now.sh to run the api.
  - use the AWS free tiers for the mysql database.
- - https://shorturl.vincentb.now.sh/
+ - https://shorter.now.sh/
 
 ## Stack
  - Node.js
