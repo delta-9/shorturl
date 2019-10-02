@@ -33,10 +33,19 @@ const machine = createMachine({
   success: state(transition('init', 'init'))
 });
 
+/**
+ * Guard callback, return true if the value are valid.
+ * @param {object} state
+ */
 function formInputsAreValid(state) {
   return isURLValid(state.url) && isAliasValid(state.alias);
 }
 
+/**
+ * Invoke callback, call the API to create the short URL.
+ * @param {object} data
+ * @return {Promise<object>}
+ */
 function saveShortUrl(data) {
   const headers = new Headers();
   headers.append('Content-Type', 'application/json');
