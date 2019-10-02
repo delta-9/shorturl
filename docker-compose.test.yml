@@ -1,0 +1,45 @@
+version: "2"
+
+services:
+  shorturl-web:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    environment:
+      DB_HOST: shorturl-mariadb
+      DB_NAME: shorturl
+      DB_USERNAME: shorturl
+      DB_PASSWORD: shorturl
+      DB_PORT: 3306
+      SHORTURL_ENVIRONMENT: test
+    ports:
+      - "9556:3000"
+    networks:
+      - shorturl_network
+
+  shorturl-mariadb:
+    image: mariadb
+    environment:
+      MYSQL_ROOT_PASSWORD: shorturl
+      MYSQL_DATABASE: shorturl
+      MYSQL_USER: shorturl
+      MYSQL_PASSWORD: shorturl
+      MYSQL_INIT_CONNECT: SET collation_connection = utf8_general_ci;
+      MYSQL_MAX_CONNECTIONS: 300
+    volumes:
+      - ./db_init:/docker-entrypoint-initdb.d # Place init .sql file(s) here.
+    ports:
+      - "33307:3306"
+    networks:
+      - shorturl_network
+
+networks:
+  shorturl_network:
+    driver: bridge
+    driver_opts:
+      com.docker.network.enable_ipv6: "false"
+    ipam:
+      driver: default
+      config:
+        - subnet: 172.28.0.0/24
+          gateway: 172.28.0.1

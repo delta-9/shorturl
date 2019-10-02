@@ -1,0 +1,20 @@
+{
+  "name": "shorturl",
+  "env": {
+    "SHORTURL_ENVIRONMENT": "prod",
+    "DB_HOST": "@short-url-db-host",
+    "DB_NAME": "shorturl",
+    "DB_USERNAME": "@short-url-db-user",
+    "DB_PASSWORD": "@short-url-db-password",
+    "DB_PORT": "3306"
+  },
+  "builds": [
+    { "src": "utils/handlers/shortRedirection.js", "use": "@now/node" },
+    { "src": "next.config.js", "use": "@now/next" },
+    { "src": "static/favicon.ico", "use": "@now/static" }
+  ],
+  "routes": [
+    { "handle": "filesystem" },
+    { "src": "/.*", "methods": ["GET"], "dest": "/utils/handlers/shortRedirection.js" }
+  ]
+}

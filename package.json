@@ -1,0 +1,52 @@
+{
+  "name": "shorturl",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "SHORTURL_ENVIRONMENT=dev DB_HOST=127.0.0.1 DB_PORT=33307 DB_USERNAME=shorturl DB_PASSWORD=shorturl DB_NAME=shorturl node server.js",
+    "build": "next build",
+    "start": "NODE_ENV=production node server.js",
+    "lint": "eslint app/**/*.js --fix"
+  },
+  "dependencies": {
+    "@zeit/next-css": "^1.0.1",
+    "copy-to-clipboard": "^3.2.0",
+    "eslint-plugin-jsx-a11y": "^6.2.3",
+    "eslint-plugin-react": "^7.15.0",
+    "knex": "^0.19.4",
+    "micro-cors": "^0.1.1",
+    "mysql": "^2.17.1",
+    "nanoid": "^2.1.1",
+    "nanoid-dictionary": "^2.0.0",
+    "next": "9.0.7",
+    "next-transpile-modules": "^2.3.1",
+    "react": "16.10.1",
+    "react-dom": "16.10.1",
+    "react-robot": "^0.2.1",
+    "robot3": "^0.2.6",
+    "sanitize.css": "^11.0.0",
+    "valid-url": "^1.0.9"
+  },
+  "devDependencies": {
+    "babel-eslint": "^10.0.3",
+    "eslint": "^6.5.1",
+    "eslint-config-prettier": "^6.3.0",
+    "eslint-plugin-import": "^2.18.2",
+    "husky": "^3.0.7"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "lint-staged": {
+    "*.{js,css,json,md}": [
+      "prettier --write",
+      "git add"
+    ],
+    "*.js": [
+      "eslint app/**/*.js --fix",
+      "git add"
+    ]
+  }
+}
