@@ -17,6 +17,9 @@ Makes long url ... short
  - https://shorter.now.sh/
 
 ## Stack
+ - 2 Lambda functions: 
+   - Api endpoint to create and save the short URL
+   - Handlers to redirect short url to their original urls
  - Node.js
  - Mysql
  - Nanoid - https://github.com/ai/nanoid/
@@ -26,10 +29,12 @@ Makes long url ... short
  - CSS - https://github.com/zeit/styled-jsx
  
 ## Possible security/scalability issue
- - One could flood the API with requests
-   - To solve that, one could implement some API limitations (time and count)
- - The database table that store the short urls could overflow.
-   - To solve that one could use database clusters.
- - Too many request to the API
-   - The api is already designed to be used in a serverless configuration, or in a cluster of servers. 
+ - Environment and library security updates
+   - One could monitor security channels and put alert in place to update the libraries / environment.
+ - API floods
+   - One could implement some API limitations (time and count)
+ - Database overflow.
+   - One could use database clusters.
+ - Too many request to the API (memory / CPU issue)
+   - The api functions are designed to be used in a serverless configuration, or in a cluster, so one could configure the infrastructure accordingly. 
 
