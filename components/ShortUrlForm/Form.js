@@ -13,7 +13,6 @@ export default function Form(send, url, alias, validationFailed) {
           <input
             autoFocus
             id="url"
-            className="input-url"
             type="url"
             onChange={sendInput('url')}
             value={url}
@@ -27,9 +26,7 @@ export default function Form(send, url, alias, validationFailed) {
           Short this url
         </button>
       </div>
-      <label id="alias" className="input-alias" htmlFor="alias">
-        (optional) Choose an alias
-      </label>
+      <label htmlFor="alias">(optional) Choose an alias</label>
       <div className="field alias">
         <div className="input-group">
           <input
@@ -52,6 +49,11 @@ export default function Form(send, url, alias, validationFailed) {
       </button>
 
       <style jsx>{`
+        label {
+          display: block;
+          font-size: 18px;
+          padding: 0 0 7px 0;
+        }
         .field {
           display: flex;
           flex-direction: row;
@@ -59,36 +61,17 @@ export default function Form(send, url, alias, validationFailed) {
           width: 100%;
           margin-bottom: 15px;
         }
-        label {
-          display: block;
-          font-size: 18px;
-          padding: 0 0 7px 0;
-        }
         .field.url .input-group {
           flex: 1;
         }
-        .field.url input {
-          width: 100%;
-          display: block;
-          margin: auto;
-        }
-        .field.alias {
-          clear: left;
-        }
-        .field.alias input {
+        .field.alias .input-group {
           width: 150px;
-        }
-        input {
-          display: inline-block;
-          padding: 7px 10px;
-          font-size: 14px;
-          height: 41px;
         }
         .save {
           margin-left: 10px;
           margin-top: 0;
           color: white;
-          font-weight: bold;
+          font-weight: normal;
           background-color: #4287f5;
         }
         .reset {

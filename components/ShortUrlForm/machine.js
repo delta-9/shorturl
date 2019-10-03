@@ -29,7 +29,7 @@ const machine = createMachine({
     ),
     transition('error', 'error', reduce((state, ev) => ({ ...state, error: ev.error })))
   ),
-  error: state(transition('init', 'init'), transition('save', 'validate')),
+  error: state(transition('edit', 'edit')),
   success: state(transition('init', 'init'))
 });
 

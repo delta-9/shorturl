@@ -17,6 +17,12 @@ async function endpoint({ body: { url = '', alias = null } }, res) {
     return;
   }
 
+  // Reject url from our domain.
+  if (url.startsWith(publicBaseUrl)) {
+    res.status(400).end();
+    return;
+  }
+
   // Attempt to save the short url with an unique ID.
   let id = alias && alias.length ? alias : generate(nolookalikes, 7);
 

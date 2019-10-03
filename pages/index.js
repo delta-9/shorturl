@@ -10,7 +10,7 @@ const Home = () => (
     <Head>
       <title>Short url service</title>
       <link rel="icon" href="/static/favicon.ico" importance="low" />
-      <link href="https://fonts.googleapis.com/css?family=Roboto&display=swap" rel="stylesheet" />
+      <link href="https://fonts.googleapis.com/css?family=Roboto:400,700&display=swap" rel="stylesheet" />
     </Head>
 
     <div className="hero">
@@ -40,7 +40,7 @@ const Home = () => (
         width: 100%;
         padding-top: 40px;
         line-height: 1.15;
-        font-size: 48px;
+        font-size: 38px;
       }
       .title,
       .description {
@@ -59,10 +59,20 @@ const Home = () => (
         cursor: pointer;
         text-align: center;
         background-color: #ccc;
-        padding: 7px 10px;
+        padding: 7px 20px;
         font-size: 18px;
         border: 0;
         margin: auto;
+        border-radius: 3px;
+      }
+      input {
+        border-radius: 3px;
+        width: 100%;
+        margin: auto;
+        display: inline-block;
+        padding: 7px 10px;
+        font-size: 14px;
+        height: 41px;
       }
     `}</style>
   </div>
