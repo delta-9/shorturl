@@ -47,7 +47,7 @@ Makes long url ... short
 - Environment and library security updates
   - One could monitor security channels and put alert in place to update the libraries / environment.
 - API floods
-  - One could implement some API limitations (time and count by IP)
+  - One could implement some Rate limiting or captcha
 - Database overflow.
   - One could use database clusters.
 - Too many request to the API (memory / CPU issue)
