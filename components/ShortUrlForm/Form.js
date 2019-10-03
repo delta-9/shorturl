@@ -4,7 +4,13 @@ import { isURLValid, isAliasValid } from '../../utils/validation';
 export default function Form(send, url, alias, validationFailed) {
   const sendInput = name => event => send({ event, type: 'input', name });
   return (
-    <>
+    <form
+      onSubmit={e => {
+        e.preventDefault();
+        send({ type: 'save' });
+      }}
+      noValidate
+    >
       <label className="url" htmlFor="url">
         Enter the url to shorten
       </label>
@@ -64,7 +70,7 @@ export default function Form(send, url, alias, validationFailed) {
         .field.url .input-group {
           flex: 1;
         }
-        .field.alias .input-group {
+        .field.alias .input-group input {
           width: 150px;
         }
         .save {
@@ -79,11 +85,14 @@ export default function Form(send, url, alias, validationFailed) {
           background-color: #b6bec2;
         }
         p.error {
-          color: #ff5500;
+          color: #c76533;
           margin: 2px 0;
-          clear: both;
+          background-color: #f5e0e0;
+          border-radius: 3px;
+          padding: 5px 10px;
+          display: inline-block;
         }
       `}</style>
-    </>
+    </form>
   );
 }
