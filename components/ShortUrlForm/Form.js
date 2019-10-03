@@ -2,6 +2,7 @@ import React from 'react';
 import { isURLValid, isAliasValid } from '../../utils/validation';
 
 export default function Form(send, url, alias, validationFailed) {
+  console.log(url, alias, validationFailed);
   const sendInput = name => event => send({ event, type: 'input', name });
   return (
     <form
@@ -28,7 +29,7 @@ export default function Form(send, url, alias, validationFailed) {
             <p className="error">{!url || !url.length ? 'Please enter an url' : 'Please enter a valid url'}</p>
           ) : null}
         </div>
-        <button className="save" type="submit" onClick={() => send({ type: 'save' })}>
+        <button className="save" type="submit">
           Short this url
         </button>
       </div>
@@ -50,7 +51,13 @@ export default function Form(send, url, alias, validationFailed) {
           ) : null}
         </div>
       </div>
-      <button className="reset" onClick={() => send('init')}>
+      <button
+        className="reset"
+        onClick={e => {
+          e.preventDefault();
+          send('init');
+        }}
+      >
         Reset values
       </button>
 
@@ -86,7 +93,7 @@ export default function Form(send, url, alias, validationFailed) {
         }
         p.error {
           color: #c76533;
-          margin: 2px 0;
+          margin: 5px 0 0;
           background-color: #f5e0e0;
           border-radius: 3px;
           padding: 5px 10px;
