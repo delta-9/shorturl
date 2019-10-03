@@ -1,5 +1,6 @@
 const url = require('url');
 const knex = require('../../config/database');
+const { publicBaseUrl } = require('../../config');
 
 async function shortRedirection(req, res) {
   const urlParts = url.parse(req.url);
@@ -13,13 +14,14 @@ async function shortRedirection(req, res) {
       if (results && results[0] && results[0].url) {
         res.writeHead(301, { Location: results[0].url });
         res.end();
-        return true;
+        return;
       }
     } catch (error) {
       console.log(error);
     }
   }
-  return false;
+  res.writeHead(301, { Location: publicBaseUrl });
+  res.end();
 }
 
 module.exports = shortRedirection;
