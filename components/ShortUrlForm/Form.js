@@ -2,7 +2,6 @@ import React from 'react';
 import { isURLValid, isAliasValid } from '../../utils/validation';
 
 export default function Form(send, url, alias, validationFailed) {
-  console.log(url, alias, validationFailed);
   const sendInput = name => event => send({ event, type: 'input', name });
   return (
     <form
