@@ -2,7 +2,7 @@ const url = require('url');
 const knex = require('../../config/database');
 const { publicBaseUrl } = require('../../config');
 
-async function shortRedirection(req, res) {
+async function shortRedirection(req, res, dev = false) {
   const urlParts = url.parse(req.url);
   const pathname = urlParts.pathname.replace(/^\/|\/$/g, '');
   if (pathname.length && !pathname.includes('_') && !pathname.includes('-')) {
@@ -19,6 +19,9 @@ async function shortRedirection(req, res) {
     } catch (error) {
       console.log(error);
     }
+  }
+  if (dev) {
+    return false;
   }
   res.writeHead(301, { Location: publicBaseUrl });
   res.end();

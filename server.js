@@ -8,7 +8,7 @@ const handleNextRequests = app.getRequestHandler();
 
 app.prepare().then(() => {
   const server = new http.Server(async (req, res) => {
-    const redirected = await shortRedirection(req, res);
+    const redirected = await shortRedirection(req, res, true);
     if (redirected) {
       return;
     }
