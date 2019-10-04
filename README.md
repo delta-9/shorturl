@@ -33,7 +33,7 @@ Makes long url ... short
 
 - 2 Lambda functions:
   - Api endpoint to create and save the short URL
-  - Handlers to redirect short url to their original urls
+  - Handler to redirect the short url to the original url
 - Node.js
 - Mysql
 - Nanoid - <https://github.com/ai/nanoid/>
