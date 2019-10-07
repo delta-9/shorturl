@@ -15,7 +15,7 @@ const Home = () => (
 
     <div className="hero">
       <h1 className="title">Welcome to short url 🏋️</h1>
-      <p className="description">Makes your long url ... short</p>
+      <p className="description">Makes your long url ... short!</p>
       <section className="content">
         <ShortUrlForm />
       </section>
