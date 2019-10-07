@@ -52,7 +52,8 @@ export default function Form(send, url, alias, validationFailed) {
           />
           {validationFailed && !isAliasValid(alias) ? (
             <p className="error">
-              Alias length should be minimum 5 characters, contains only alphanumeric characters and no spaces
+              Alias length should be minimum 5 characters, maximum 24, contains only alphabetical and numeric characters
+              and no spaces
             </p>
           ) : null}
         </div>
