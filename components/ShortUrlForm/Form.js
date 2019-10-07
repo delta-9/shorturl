@@ -23,9 +23,16 @@ export default function Form(send, url, alias, validationFailed) {
             onChange={sendInput('url')}
             value={url}
             placeholder="https://www.google.com/"
+            maxLength="2048"
           />
           {validationFailed && !isURLValid(url) ? (
-            <p className="error">{!url || !url.length ? 'Please enter an url' : 'Please enter a valid url'}</p>
+            <p className="error">
+              {!url || !url.length
+                ? 'Please enter an url'
+                : url.length > 2048
+                  ? 'URL maximum length is 2048 characters'
+                  : 'Please enter a valid url'}
+            </p>
           ) : null}
         </div>
         <button className="save" type="submit">

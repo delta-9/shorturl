@@ -6,5 +6,5 @@ export function isAliasValid(alias) {
 }
 
 export function isURLValid(url) {
-  return url && url.length && isWebUri(url);
+  return url && url.length && url.length <= 2048 && isWebUri(url);
 }
