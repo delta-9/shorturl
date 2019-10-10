@@ -29,7 +29,7 @@ async function endpoint({ body: { url = '', alias = null } }, res) {
   // We have to implement this lookup, but in theory it should very rarely happen.
   let success = false;
   const maxLookup = 10; // Limit the number of lookup
-  for (let i = 0; i < maxLookup; i += 1) {
+  for (let i = 0; i < maxLookup && !success; i += 1) {
     try {
       const exists = await knex
         .select('id')
@@ -38,13 +38,11 @@ async function endpoint({ body: { url = '', alias = null } }, res) {
       if (exists && exists[0] && exists[0].id) {
         throw new Error('Id already exist');
       }
+      success = true;
     } catch (error) {
       // Id already exists, try another one.
       id = generate(nolookalikes, 7);
-      continue;
     }
-    success = true;
-    break;
   }
   if (!success) {
     console.error('Impossible to generate a non-existing ID');
