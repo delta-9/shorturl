@@ -8,9 +8,10 @@ import ShortUrlForm from '../components/ShortUrlForm';
 const Home = () => (
   <div>
     <Head>
-      <title>Short url service</title>
+      <title>Short url - Makes your long url ... short!</title>
       <link rel="icon" href="/static/favicon.ico" importance="low" />
       <link href="https://fonts.googleapis.com/css?family=Roboto:400,700&display=swap" rel="stylesheet" />
+      <meta name="google-site-verification" content="6WwuAgC99fQOT--_qTu7A4AtTM5UlYWebn4ypsamfM4" />
     </Head>
 
     <div className="hero">
