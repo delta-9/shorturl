@@ -23,7 +23,7 @@
     "react": "16.10.1",
     "react-dom": "16.10.1",
     "react-robot": "^0.2.1",
-    "robot3": "^0.2.6",
+    "robot3": "^0.2.18",
     "sanitize.css": "^11.0.0",
     "valid-url": "^1.0.9"
   },
