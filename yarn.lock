@@ -5714,10 +5714,10 @@ robot-hooks@^0.3.1:
   resolved "https://registry.yarnpkg.com/robot-hooks/-/robot-hooks-0.3.1.tgz#535926707019b2ae7e9a80b7199fa7eec01a5f0a"
   integrity sha512-936IoeQ1Bo4pxCS2D50kjmTqJboAvxp+qYy9OmhJJvupkrpjZuo7XTBjbb8hcRf3W6EeF8AVHm45gzlHhSWbQA==
 
-robot3@^0.2.6:
-  version "0.2.6"
-  resolved "https://registry.yarnpkg.com/robot3/-/robot3-0.2.6.tgz#6584f09081b6f268d00f228cc77b51c393a0cd3a"
-  integrity sha512-XfNPJuBw4AFCR3iH+hYrCPMWXg/9IYgU5Ep0cFxHCiVeeXWAlclZ1J2y7Px4NrArazLbPDzA475FcSDxueqpOg==
+robot3@^0.2.18:
+  version "0.2.18"
+  resolved "https://registry.yarnpkg.com/robot3/-/robot3-0.2.18.tgz#bc920db22b91abb044c4e95289baa877fc3d8288"
+  integrity sha512-0P3HfHVJfPKObpoIciglMefFYhMtdGMRjh5KE5U+NydwrheOnbA3GqlB84Wcy5h6UMseb77MpedUDyKZVIkiug==
 
 run-async@^2.2.0:
   version "2.3.0"
