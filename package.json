@@ -16,7 +16,7 @@
     "knex": "^0.19.5",
     "micro-cors": "^0.1.1",
     "mysql": "^2.17.1",
-    "nanoid": "^2.1.1",
+    "nanoid": "^3.1.31",
     "nanoid-dictionary": "^2.0.0",
     "next": "9.3.2",
     "next-transpile-modules": "^2.3.1",
