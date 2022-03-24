@@ -32,7 +32,9 @@
     "eslint": "^6.5.1",
     "eslint-config-prettier": "^6.3.0",
     "eslint-plugin-import": "^2.18.2",
-    "husky": "^3.0.7"
+    "husky": "^3.0.7",
+    "lint-staged": "^12.3.7",
+    "prettier": "^2.6.0"
   },
   "husky": {
     "hooks": {
