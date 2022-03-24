@@ -2,13 +2,13 @@ import Cors from 'micro-cors';
 const generate = require('nanoid/generate');
 const nolookalikes = require('nanoid-dictionary/nolookalikes');
 import { publicBaseUrl } from '../../config';
-import knex from '../../config/database';
+// import knex from '../../config/database';
 import { isURLValid, isAliasValid } from '../../utils/validation';
 
-const timestamp = () => Math.floor(Date.now() / 1000);
+// const timestamp = () => Math.floor(Date.now() / 1000);
 
 const cors = Cors({
-  allowedMethods: ['POST', 'HEAD']
+  allowedMethods: ['POST', 'HEAD'],
 });
 
 async function endpoint({ body: { url = '', alias = null } }, res) {
@@ -26,15 +26,13 @@ async function endpoint({ body: { url = '', alias = null } }, res) {
   // Attempt to save the short url with an unique ID.
   let id = alias && alias.length ? alias : generate(nolookalikes, 7);
 
+  /** nodb
   // We have to implement this lookup, but in theory it should very rarely happen.
   let success = false;
   const maxLookup = 10; // Limit the number of lookup
   for (let i = 0; i < maxLookup && !success; i += 1) {
     try {
-      const exists = await knex
-        .select('id')
-        .from('short_url')
-        .where('id', id);
+      const exists = await knex.select('id').from('short_url').where('id', id);
       if (exists && exists[0] && exists[0].id) {
         throw new Error('Id already exist');
       }
@@ -54,7 +52,7 @@ async function endpoint({ body: { url = '', alias = null } }, res) {
       .insert({
         id,
         created: timestamp(),
-        url
+        url,
       })
       .into('short_url');
   } catch (error) {
@@ -62,7 +60,7 @@ async function endpoint({ body: { url = '', alias = null } }, res) {
     res.status(500).end();
     return;
   }
-
+*/
   res.json({ id, shortUrl: `${publicBaseUrl}/${id}` });
 }
 

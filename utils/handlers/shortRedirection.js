@@ -1,16 +1,22 @@
+/**
 const url = require('url');
 const knex = require('../../config/database');
 const { publicBaseUrl } = require('../../config');
+*/
 
+/**
+ *
+ * @param {import('express').Response} res
+ */
 async function shortRedirection(req, res, dev = false) {
+  res.send('Database is disabled').status(502);
+  return;
+  /*
   const urlParts = url.parse(req.url);
   const pathname = urlParts.pathname.replace(/^\/|\/$/g, '');
   if (pathname.length && !pathname.includes('_') && !pathname.includes('-')) {
     try {
-      const results = await knex
-        .select('url')
-        .from('short_url')
-        .where('id', pathname);
+      const results = await knex.select('url').from('short_url').where('id', pathname);
       if (results && results[0] && results[0].url) {
         res.writeHead(301, { Location: results[0].url });
         res.end();
@@ -25,6 +31,7 @@ async function shortRedirection(req, res, dev = false) {
   }
   res.writeHead(301, { Location: publicBaseUrl });
   res.end();
+  */
 }
 
 module.exports = shortRedirection;
